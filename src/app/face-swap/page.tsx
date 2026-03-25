@@ -7,6 +7,7 @@ import CTABanner from '@/components/sections/CTABanner';
 import HowItWorks from '@/components/sections/HowItWorks';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import { playStoreLink } from '@/lib/constants';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Face Swap App \u2014 Free AI Face Swap with 500+ Templates',
@@ -23,6 +24,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function FaceSwapPage() {
   return (
     <>
+      <HreflangTags path="/face-swap" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[

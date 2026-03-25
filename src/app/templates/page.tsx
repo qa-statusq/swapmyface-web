@@ -5,6 +5,8 @@ import { TEMPLATE_CATEGORIES } from '@/data/templates';
 import { FESTIVALS } from '@/data/festivals';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import JsonLd from '@/components/seo/JsonLd';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = generatePageMetadata({
   title: '500+ Face Swap Templates \u2014 Festival, Couple, Kids & Trending',
@@ -15,8 +17,19 @@ export const metadata: Metadata = generatePageMetadata({
 });
 
 export default function TemplatesPage() {
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: '500+ Face Swap Templates',
+    description: 'Browse 500+ free face swap templates across festivals, couples, kids, love & trending categories.',
+    url: `${SITE_URL}/templates`,
+    isPartOf: { '@type': 'WebSite', name: 'SwapMyFace', url: SITE_URL },
+    numberOfItems: 500,
+  };
+
   return (
     <>
+      <JsonLd data={collectionSchema} />
       <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[

@@ -9,6 +9,7 @@ import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
 import { HOME_FAQ } from '@/data/faq';
 import { SITE_URL } from '@/lib/constants';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 export const metadata: Metadata = {
   title: 'SwapMyFace - Best Free AI Face Swap App | 500+ Templates | Download Free',
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <HreflangTags path="/" />
       <Hero />
       <StatsCounter />
       <HowItWorks />

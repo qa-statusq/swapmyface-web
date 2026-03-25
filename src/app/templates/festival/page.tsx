@@ -4,6 +4,9 @@ import { generatePageMetadata } from '@/lib/metadata';
 import { FESTIVALS } from '@/data/festivals';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import HreflangTags from '@/components/seo/HreflangTags';
+import JsonLd from '@/components/seo/JsonLd';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Festival Face Swap Templates \u2014 Diwali, Christmas, Eid, Holi & More',
@@ -19,6 +22,16 @@ export const metadata: Metadata = generatePageMetadata({
 export default function FestivalTemplatesPage() {
   return (
     <>
+      <HreflangTags path="/templates/festival" />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: 'Festival Face Swap Templates',
+        description: 'Face swap templates for Diwali, Christmas, Eid, Holi, Halloween, New Year & more festivals worldwide.',
+        url: `${SITE_URL}/templates/festival`,
+        isPartOf: { '@type': 'WebSite', name: 'SwapMyFace', url: SITE_URL },
+        numberOfItems: FESTIVALS.length,
+      }} />
       <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[

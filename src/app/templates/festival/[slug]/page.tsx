@@ -6,6 +6,7 @@ import { SITE_URL, playStoreLink } from '@/lib/constants';
 import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 export function generateStaticParams() {
   return FESTIVALS.map((f) => ({ slug: f.slug }));
@@ -69,6 +70,7 @@ export default async function FestivalPage({
 
   return (
     <>
+      <HreflangTags path={`/templates/festival/${slug}`} />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[
