@@ -1,26 +1,168 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--theme-bg);
+  --color-bg-soft: var(--theme-bg-soft);
+  --color-panel: var(--theme-panel);
+  --color-surface: var(--theme-surface);
+  --color-text: var(--theme-text);
+  --color-muted: var(--theme-muted);
+  --color-line: var(--theme-line);
+  --color-accent: #5e8cff;
+  --color-accent-2: #28d3b8;
+  --color-danger: #ff7a7a;
+  --font-sans: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark theme (default) */
+:root,
+html[data-theme='dark'] {
+  --theme-bg: #09111f;
+  --theme-bg-soft: #101c31;
+  --theme-panel: #12203a;
+  --theme-surface: rgba(16, 28, 49, 0.78);
+  --theme-text: #f4f7fb;
+  --theme-muted: #b4c1d6;
+  --theme-line: rgba(255, 255, 255, 0.12);
+}
+
+/* Light theme */
+html[data-theme='light'] {
+  --theme-bg: #f8f9fc;
+  --theme-bg-soft: #eef1f6;
+  --theme-panel: #e4e8f0;
+  --theme-surface: rgba(228, 232, 240, 0.78);
+  --theme-text: #0f1729;
+  --theme-muted: #5a6578;
+  --theme-line: rgba(0, 0, 0, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), 'Segoe UI', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+::selection {
+  background: rgba(94, 140, 255, 0.4);
+  color: #fff;
+}
+
+/* Light mode: flip white overlays to black overlays */
+html[data-theme='light'] .hover\:bg-white\/5:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Brand name — italic for "MyFace" */
+.brand-italic {
+  font-style: italic;
+}
+
+/* Smooth gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Legal / Policy pages — preserving original styling */
+.legal-shell {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.legal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+}
+
+.legal-nav a {
+  font-size: 0.82rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.legal-nav a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.legal-section {
+  margin-top: 2.5rem;
+}
+
+.legal-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.legal-shell h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.legal-shell p {
+  color: var(--color-muted);
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+}
+
+.legal-shell ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  color: var(--color-muted);
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+}
+
+.legal-shell ul li {
+  margin-bottom: 0.35rem;
+}
+
+.legal-shell a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.legal-shell .mono {
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.callout.warn {
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(255, 122, 122, 0.08);
+  border: 1px solid rgba(255, 122, 122, 0.2);
+  color: var(--color-danger);
+  font-size: 0.9rem;
+  line-height: 1.7;
 }

@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SwapMyFace Website
 
-## Getting Started
+Production-ready Next.js 16 website for the SwapMyFace AI face swap app. Built for SEO domination targeting the "face swap" keyword (77,601 reach) and 220+ related keywords across 6 languages.
 
-First, run the development server:
+## Quick Start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # Add your GA4 ID and Search Console code
+npm run dev                   # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Production Build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build    # 67+ static pages, 0 errors
+npm start        # Production server
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy to Vercel
 
-## Learn More
+```bash
+npx vercel
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 Measurement ID (e.g., `G-XXXXXXXXXX`) |
+| `NEXT_PUBLIC_GOOGLE_VERIFICATION` | Google Search Console verification code |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture
 
-## Deploy on Vercel
+- **Framework:** Next.js 16 (App Router, TypeScript, Tailwind CSS v4)
+- **Rendering:** SSG (Static Site Generation) for all pages, ISR for `/templates/trending`
+- **SEO:** Dynamic sitemap, robots.txt, per-page metadata, 6 schema types
+- **i18n:** 6 languages (en, hi, ar, ja, ko, vi) with hreflang tags
+- **Analytics:** GA4 via @next/third-parties (non-blocking)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Pages (67 total)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Homepage** `/` - Primary landing page
+- **5 Keyword Pages** - `/face-swap`, `/ai-face-swap`, `/ai-face-changer`, `/face-swap-photo-editor`, `/free-face-swap`
+- **7 Template Pages** - Hub + 5 categories + trending (ISR)
+- **16 Festival Pages** - Dynamic `[slug]` with `generateStaticParams`
+- **12 Blog Posts** - Dynamic `[slug]` with Article schema
+- **4 Legal/Support** - Privacy, Terms, Responsible Use, Support (content preserved from original)
+- **15 Localized Pages** - Hindi (5), Arabic (3), Japanese (3), Korean (2), Vietnamese (2)
+- **Technical** - robots.txt, sitemap.xml (61 URLs), manifest, 404, OG image
+
+## Configuration
+
+- **Domain:** Update `SITE_URL` in `src/lib/constants.ts`
+- **Play Store:** Update `PLAY_STORE_URL` in `src/lib/constants.ts` with actual package ID
+- **Contact:** Update `CONTACT_EMAIL` in `src/lib/constants.ts` if needed
+
+## Key Files
+
+| Path | Purpose |
+|------|---------|
+| `src/lib/constants.ts` | Site config, URLs, nav links |
+| `src/lib/keywords.ts` | All 221 keyword data from ASO doc |
+| `src/data/festivals.ts` | 16 festival definitions |
+| `src/data/blog.ts` | 12 blog post content |
+| `src/data/faq.ts` | FAQ content per page |
+| `src/data/translations/` | hi, ar, ja, ko, vi translations |
