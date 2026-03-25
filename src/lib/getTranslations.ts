@@ -4,7 +4,8 @@ import { ja } from '@/data/translations/ja';
 import { ko } from '@/data/translations/ko';
 import { vi } from '@/data/translations/vi';
 
-const translations: Record<string, typeof hi> = { hi, ar: ar as typeof hi, ja: ja as typeof hi, ko: ko as typeof hi, vi: vi as typeof hi };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const translations: Record<string, any> = { hi, ar, ja, ko, vi };
 
 export function getTranslations(locale: string) {
   return translations[locale] || null;
