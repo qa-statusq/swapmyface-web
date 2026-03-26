@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 
 interface CTABannerProps {
   campaign: string;
@@ -18,9 +19,17 @@ export default function CTABanner({
 }: CTABannerProps) {
   return (
     <section className="py-16 sm:py-20">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <div className="reveal-scale mx-auto max-w-4xl px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-3xl border border-line bg-panel p-8 text-center sm:p-12">
+          {/* Gradient background */}
           <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-accent-2/10" />
+
+          {/* Animated corner accents */}
+          <div className="absolute top-4 left-4 h-8 w-8 rounded-tl-xl border-t-2 border-l-2 border-accent/20" />
+          <div className="absolute top-4 right-4 h-8 w-8 rounded-tr-xl border-t-2 border-r-2 border-accent/20" />
+          <div className="absolute bottom-4 left-4 h-8 w-8 rounded-bl-xl border-b-2 border-l-2 border-accent/20" />
+          <div className="absolute bottom-4 right-4 h-8 w-8 rounded-br-xl border-b-2 border-r-2 border-accent/20" />
+
           <div className="relative">
             <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">{heading}</h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted">{subtext}</p>
@@ -29,11 +38,10 @@ export default function CTABanner({
                 href={playStoreLink(campaign)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90 hover:shadow-xl"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/25 transition-all hover:shadow-xl hover:shadow-accent/30"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 01-.609-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302a1 1 0 010 1.38l-2.302 2.302L15.396 13l2.302-2.492zM5.864 2.658L16.8 8.991l-2.302 2.302L5.864 2.658z" />
-                </svg>
+                <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <PlayStoreIcon />
                 Download Free on Google Play
               </Link>
             </div>

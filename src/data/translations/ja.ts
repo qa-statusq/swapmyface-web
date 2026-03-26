@@ -1,9 +1,11 @@
-export const ja = {
+import type { TranslationSchema } from './types';
+
+export const ja: TranslationSchema = {
   meta: {
     home: {
       title: 'SwapMyFace - 無料AI顔変換アプリ | 500+テンプレート | HD結果',
       description:
-        'SwapMyFaceは最高の無料AI顔変換アプリです。500以上のテンプレート、無制限のスワップ、フルHD結果。お祣、クリスマス、ハロウィンなどのテンプレート。Google Playで無料ダウンロード。',
+        'SwapMyFaceは最高の無料AI顔変換アプリです。500以上のテンプレート、無制限のスワップ、フルHD結果。お祭り、クリスマス、ハロウィンなどのテンプレート。Google Playで無料ダウンロード。',
     },
     faceSwap: {
       title: '顔変換アプリ — 無料AI顔変換 500+テンプレート',
@@ -11,9 +13,24 @@ export const ja = {
         '最高の顔変換アプリをお探しですか？SwapMyFaceは完全無料のAI顔変換を提供します。500+テンプレート、無制限、フルHD。',
     },
     festival: {
-      title: 'お祣・イベント顔変換テンプレート — クリスマス・ハロウィン・お正月',
+      title: 'お祭り・イベント顔変換テンプレート — クリスマス・ハロウィン・お正月',
       description:
-        'SwapMyFaceであらゆるお祣をお祝いしましょう！クリスマス、ハロウィン、お正月などの顔変換テンプレート。無料、無制限、HD。',
+        'SwapMyFaceであらゆるお祭りをお祝いしましょう！クリスマス、ハロウィン、お正月などの顔変換テンプレート。無料、無制限、HD。',
+    },
+    howItWorks: {
+      title: 'SwapMyFaceの使い方 — 4つの簡単なステップで顔変換',
+      description:
+        'SwapMyFaceで4つの簡単なステップで顔変換する方法を学びましょう。テンプレートを選び、写真をアップロードし、スワップをタップして、HD結果を取得。',
+    },
+    templates: {
+      title: '500+ 顔変換テンプレート — お祭り、カップル、子供向け、トレンド',
+      description:
+        'お祭り、カップル、子供、愛、トレンドカテゴリーの500以上の顔変換テンプレートを閲覧。毎日新しいテンプレート。無料、無制限、HD。',
+    },
+    support: {
+      title: 'サポート — SwapMyFaceヘルプ＆お問い合わせ',
+      description:
+        'SwapMyFaceでお困りですか？顔変換の問題、テンプレートの質問などのサポートを受けられます。',
     },
   },
   hero: {
@@ -21,13 +38,21 @@ export const ja = {
     title: 'AIで瞬時に顔を変換',
     titleHighlight: '500+テンプレート、いつも無料',
     subtitle:
-      'SwapMyFaceは最高の無料AI顔変換アプリです。500以上のお祣、カップル、子供向け、トレンドテンプレート。リアルなHD結果。無制限スワップ。ゼロコスト。永遠に。',
+      'SwapMyFaceは最高の無料AI顔変換アプリです。500以上のお祭り、カップル、子供向け、トレンドテンプレート。リアルなHD結果。無制限スワップ。ゼロコスト。永遠に。',
     cta: 'Google Playで無料ダウンロード',
     secondaryCta: '使い方を見る',
   },
   sections: {
+    howItWorks: '4つの簡単なステップで顔変換',
+    howItWorksSubtitle:
+      'SwapMyFaceで顔変換は簡単です。テンプレートを選び、写真をアップロードし、スワップをタップして、HD結果を取得。',
+    templates: 'あらゆる場面に500+顔変換テンプレート',
+    templatesSubtitle:
+      'お祭り、カップル、子供、愛、トレンドのカテゴリーでテンプレートを閲覧。毎日新しいテンプレートが追加されます。',
     features: 'SwapMyFaceが最高の顔変換アプリである理由',
-    festivals: 'あらゆるお祣のための顔変換テンプレート',
+    festivals: 'あらゆるお祭りのための顔変換テンプレート',
+    festivalsSubtitle:
+      'SwapMyFaceであらゆるお祝いを。ディワリからクリスマス、イードからハロウィンまで — 500以上のお祭りテンプレートがあらゆる文化をカバー。',
     faq: 'よくある質問',
     download: 'SwapMyFaceをGoogle Playで無料ダウンロード',
     downloadSubtitle: 'サブスクリプション不要。クレジット不要。永遠に無料。500+テンプレート。無制限スワップ。フルHD。',
@@ -102,8 +127,30 @@ export const ja = {
       answer: '無制限です。いつでも、何度でも顔変換できます。1日の制限も、週間の制限もありません。',
     },
     {
+      question: '結果の品質はどうですか？',
+      answer: 'すべての顔変換はディープAIエンジンで処理され、超リアルなフルHD解像度で出力されます。AIが顔の位置合わせ、肌のトーンマッチング、照明調整を自動で行います。',
+    },
+    {
       question: '安全ですか？',
       answer: 'はい。アップロードされた写真は24時間以内にサーバーから削除されます。同意のない使用は厳しく禁止されています。',
     },
+    {
+      question: 'どのお祭りに対応していますか？',
+      answer: 'ディワリ、クリスマス、イード、ホーリー、ハロウィン、お正月、ナヴラートリ、感謝祭、イースター、ポンガル、オナム、ドゥルガー・プージャーなど多数。毎日新しいお祭りテンプレートが追加されます。',
+    },
   ],
+  notFound: {
+    title: 'ページが見つかりません',
+    subtitle: 'お探しのページは存在しないか、移動されました。',
+    goHome: 'ホームページへ',
+    browseTemplates: 'テンプレートを閲覧',
+  },
+  faceSwapShowcase: {
+    heading: 'SwapMyFaceを体験しよう',
+    subtitle: '数秒で超リアルなAI顔変換。テンプレートを選び、顔をアップロードして、魔法を見ましょう。',
+    templateLabel: 'テンプレートスワップ',
+    customLabel: 'カスタムフォトスワップ',
+    before: 'ビフォー',
+    after: 'アフター',
+  },
 };

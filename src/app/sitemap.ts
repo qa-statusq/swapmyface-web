@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/templates/trending`, lastModified: now, changeFrequency: 'daily', priority: 0.8 },
     { url: `${SITE_URL}/how-it-works`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE_URL}/about`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${SITE_URL}/support`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
     { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
@@ -41,40 +42,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Hindi (hi) localized pages
+  // Shared locale pages (all 5 locales get these)
+  const localeSharedPages = ['hi', 'ar', 'ja', 'ko', 'vi'].flatMap((loc): MetadataRoute.Sitemap => [
+    { url: `${SITE_URL}/${loc}`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/${loc}/face-swap`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
+    { url: `${SITE_URL}/${loc}/how-it-works`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${SITE_URL}/${loc}/templates`, lastModified: now, changeFrequency: 'daily', priority: 0.8 },
+    { url: `${SITE_URL}/${loc}/templates/festival`, lastModified: now, changeFrequency: 'daily', priority: 0.8 },
+    { url: `${SITE_URL}/${loc}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${SITE_URL}/${loc}/support`, lastModified: now, changeFrequency: 'monthly', priority: 0.4 },
+  ]);
+
+  // Locale-specific festival pages
   const hiPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/hi`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/hi/face-swap`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${SITE_URL}/hi/templates/festival`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/hi/templates/festival/diwali`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/hi/templates/festival/holi`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
   ];
 
-  // Arabic (ar) localized pages
   const arPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/ar`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/ar/face-swap`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${SITE_URL}/ar/templates/festival/eid`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
   ];
 
-  // Japanese (ja) localized pages — 顔変換 (3,735 reach, 0 difficulty)
-  const jaPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/ja`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/ja/face-swap`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
-    { url: `${SITE_URL}/ja/templates/festival`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
-  ];
+  const jaPages: MetadataRoute.Sitemap = [];
+  const koPages: MetadataRoute.Sitemap = [];
+  const viPages: MetadataRoute.Sitemap = [];
 
-  // Korean (ko) localized pages — 얼굴 교체 (2,145 reach, 0 difficulty)
-  const koPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/ko`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/ko/face-swap`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
-  ];
-
-  // Vietnamese (vi) localized pages — ghép mặt (2,194 reach, 0 difficulty)
-  const viPages: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/vi`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/vi/face-swap`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
-  ];
-
-  return [...staticPages, ...festivalPages, ...blogPages, ...hiPages, ...arPages, ...jaPages, ...koPages, ...viPages];
+  return [...staticPages, ...festivalPages, ...blogPages, ...localeSharedPages, ...hiPages, ...arPages, ...jaPages, ...koPages, ...viPages];
 }

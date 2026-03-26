@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 
 interface LocalizedHeroProps {
   badge: string;
@@ -37,6 +38,7 @@ export default function LocalizedHero({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/25 transition-all hover:bg-accent/90 hover:shadow-xl"
             >
+              <PlayStoreIcon />
               {cta}
             </Link>
             <Link

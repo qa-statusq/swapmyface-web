@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/metadata';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Privacy Policy',
+  title: 'Privacy Policy \u2014 SwapMyFace',
   description:
     'SwapMyFace Privacy Policy covering uploads, retention, analytics, ads, cloud processing, diagnostics, and contact details.',
   path: '/privacy',

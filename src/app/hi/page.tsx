@@ -2,23 +2,33 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { hi } from '@/data/translations/hi';
 import { SITE_URL, playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+import nextDynamic from 'next/dynamic';
 import StatsCounter from '@/components/sections/StatsCounter';
-import HowItWorks from '@/components/sections/HowItWorks';
-import FeatureGrid from '@/components/sections/FeatureGrid';
-import FAQ from '@/components/sections/FAQ';
-import CTABanner from '@/components/sections/CTABanner';
 import HreflangTags from '@/components/seo/HreflangTags';
+
+const HowItWorks = nextDynamic(() => import('@/components/sections/HowItWorks'));
+const FeatureGrid = nextDynamic(() => import('@/components/sections/FeatureGrid'));
+const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
+const FaceSwapShowcase = nextDynamic(() => import('@/components/sections/FaceSwapShowcase'));
 import { FESTIVALS } from '@/data/festivals';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: hi.meta.home.title,
   description: hi.meta.home.description,
+  keywords: ['फेस स्वैप ऐप', 'फ्री फेस स्वैप', 'AI फेस स्वैप', 'फेस स्वैप टेम्प्लेट्स', 'face swap app'],
   alternates: {
     canonical: `${SITE_URL}/hi`,
     languages: {
       en: SITE_URL,
       hi: `${SITE_URL}/hi`,
       ar: `${SITE_URL}/ar`,
+      ja: `${SITE_URL}/ja`,
+      ko: `${SITE_URL}/ko`,
+      vi: `${SITE_URL}/vi`,
       'x-default': SITE_URL,
     },
   },
@@ -26,7 +36,7 @@ export const metadata: Metadata = {
     title: hi.meta.home.title,
     description: hi.meta.home.description,
     locale: 'hi_IN',
-    alternateLocale: ['en_US', 'ar_SA'],
+    alternateLocale: ['en_US', 'ar_SA', 'ja_JP', 'ko_KR', 'vi_VN'],
   },
 };
 
@@ -63,6 +73,7 @@ export default function HindiHomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/25 transition-all hover:bg-accent/90 hover:shadow-xl"
               >
+                <PlayStoreIcon />
                 {hi.hero.cta}
               </Link>
               <Link
@@ -77,6 +88,7 @@ export default function HindiHomePage() {
       </section>
 
       <StatsCounter translations={hi.stats} />
+      <FaceSwapShowcase translations={hi.faceSwapShowcase} />
       <HowItWorks translations={hi.howItWorks} />
 
       {/* Festival Section - Hindi focused */}

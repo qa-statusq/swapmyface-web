@@ -41,11 +41,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Smooth theme transition via View Transition API (GPU-composited crossfade) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+::view-transition-old(root) {
+  animation-name: none;
+}
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans), 'Segoe UI', sans-serif;
-  transition: background-color 0.3s, color 0.3s;
 }
 
 ::selection {
@@ -165,4 +177,143 @@ html[data-theme='light'] .hover\:bg-white\/5:hover {
   color: var(--color-danger);
   font-size: 0.9rem;
   line-height: 1.7;
+}
+
+/* ─── 3D page transition ─── */
+@keyframes page-enter-3d {
+  from {
+    opacity: 0;
+    transform: perspective(1200px) translate3d(0, 20px, -40px) rotateX(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1200px) translate3d(0, 0, 0) rotateX(0deg);
+  }
+}
+.page-enter {
+  animation: page-enter-3d 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── Premium scroll-reveal system (GPU-composited) ─── */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale3d(0.95, 0.95, 1); }
+  to { opacity: 1; transform: scale3d(1, 1, 1); }
+}
+
+.reveal {
+  will-change: opacity, transform;
+  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 25%;
+}
+.reveal-scale {
+  will-change: opacity, transform;
+  animation: reveal-scale 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 25%;
+}
+
+/* Stagger children delays */
+.stagger > :nth-child(1) { animation-delay: 0ms; }
+.stagger > :nth-child(2) { animation-delay: 60ms; }
+.stagger > :nth-child(3) { animation-delay: 120ms; }
+.stagger > :nth-child(4) { animation-delay: 180ms; }
+.stagger > :nth-child(5) { animation-delay: 240ms; }
+.stagger > :nth-child(6) { animation-delay: 300ms; }
+
+/* ─── Hero entrance (GPU-only: opacity + transform) ─── */
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes hero-glow-drift {
+  0%, 100% { opacity: 0.07; transform: translate3d(-50%, 0, 0); }
+  50% { opacity: 0.1; transform: translate3d(-45%, -12px, 0); }
+}
+@keyframes hero-orb-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -16px, 0); }
+}
+@keyframes hero-grid-fade {
+  from { opacity: 0; }
+  to { opacity: 0.03; }
+}
+
+.hero-badge {
+  will-change: opacity, transform;
+  animation: hero-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+.hero-heading {
+  will-change: opacity, transform;
+  animation: hero-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+.hero-paragraph {
+  will-change: opacity, transform;
+  animation: hero-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+.hero-cta {
+  will-change: opacity, transform;
+  animation: hero-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+/* ─── Premium card hover (GPU-composited) ─── */
+.card-hover {
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-hover:hover {
+  transform: translate3d(0, -4px, 0);
+  box-shadow: 0 12px 40px -12px rgba(94, 140, 255, 0.15);
+  border-color: rgba(94, 140, 255, 0.3);
+}
+
+/* ─── Gradient line divider ─── */
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(94, 140, 255, 0.2), transparent);
+}
+
+/* Showcase abstract panel animations (GPU-composited) */
+@keyframes showcase-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes showcase-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+@keyframes showcase-glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+@keyframes showcase-ring-expand {
+  from { transform: translate(-50%, -50%) scale(0.6); opacity: 0.5; }
+  to { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+}
+@keyframes showcase-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes showcase-border-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+@keyframes showcase-particle-rise {
+  0% { transform: translate3d(0, 100%, 0); opacity: 0; }
+  15% { opacity: 0.8; }
+  100% { transform: translate3d(15px, -100%, 0); opacity: 0; }
+}
+@keyframes showcase-particle-rise-alt {
+  0% { transform: translate3d(0, 100%, 0); opacity: 0; }
+  15% { opacity: 0.6; }
+  100% { transform: translate3d(-12px, -100%, 0); opacity: 0; }
+}
+@keyframes showcase-text-shimmer {
+  from { background-position: -200% center; }
+  to { background-position: 200% center; }
 }

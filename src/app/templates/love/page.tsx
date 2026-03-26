@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
-import CTABanner from '@/components/sections/CTABanner';
+import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import { playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Love Face Swap Templates \u2014 Romantic Heart-Themed Face Swaps',
@@ -28,7 +33,7 @@ export default function LoveTemplatesPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+          <h1 className="hero-heading text-4xl font-extrabold leading-tight sm:text-5xl">
             Love Face Swap Templates &mdash; Share Your Love Beautifully
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -36,6 +41,7 @@ export default function LoveTemplatesPage() {
           </p>
           <div className="mt-8">
             <Link href={playStoreLink('love_templates_page')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90">
+              <PlayStoreIcon />
               Download Free Love Face Swap App
             </Link>
           </div>

@@ -8,6 +8,10 @@ export interface BlogPost {
   updatedDate?: string;
   readTime: string;
   category: string;
+  author: {
+    name: string;
+    role: string;
+  };
   internalLinks: { href: string; label: string }[];
   sections: {
     heading: string;
@@ -27,6 +31,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '8 min read',
     category: 'Guides',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/face-swap', label: 'Face Swap App' },
       { href: '/free-face-swap', label: 'Free Face Swap' },
@@ -121,6 +126,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '6 min read',
     category: 'Tutorials',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/free-face-swap', label: 'Free Face Swap' },
       { href: '/how-it-works', label: 'How It Works' },
@@ -191,6 +197,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '7 min read',
     category: 'Technology',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/ai-face-swap', label: 'AI Face Swap' },
       { href: '/ai-face-changer', label: 'AI Face Changer' },
@@ -267,6 +274,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '5 min read',
     category: 'Ideas',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/templates/festival/diwali', label: 'Diwali Templates' },
       { href: '/templates/festival', label: 'Festival Templates' },
@@ -337,6 +345,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '5 min read',
     category: 'Ideas',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/templates/festival/christmas', label: 'Christmas Templates' },
       { href: '/templates/festival', label: 'Festival Templates' },
@@ -397,6 +406,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '5 min read',
     category: 'Ideas',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/templates/couple', label: 'Couple Templates' },
       { href: '/templates/love', label: 'Love Templates' },
@@ -457,6 +467,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '6 min read',
     category: 'Education',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/responsible-use', label: 'Responsible Use' },
       { href: '/ai-face-swap', label: 'AI Face Swap' },
@@ -523,6 +534,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '6 min read',
     category: 'Education',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/templates/kids', label: 'Kids Templates' },
       { href: '/responsible-use', label: 'Responsible Use' },
@@ -590,6 +602,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '5 min read',
     category: 'Social Media',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/face-swap', label: 'Face Swap App' },
       { href: '/templates/trending', label: 'Trending Templates' },
@@ -637,6 +650,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '5 min read',
     category: 'Ideas',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/templates/festival/eid', label: 'Eid Templates' },
       { href: '/templates/festival', label: 'Festival Templates' },
@@ -691,6 +705,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '6 min read',
     category: 'Guides',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/ai-face-swap', label: 'AI Face Swap' },
       { href: '/face-swap-photo-editor', label: 'Face Swap Photo Editor' },
@@ -755,6 +770,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: '2026-03-25',
     readTime: '4 min read',
     category: 'Ideas',
+    author: { name: 'SwapMyFace Team', role: 'AI & Creative Technology' },
     internalLinks: [
       { href: '/templates/festival/new-year', label: 'New Year Templates' },
       { href: '/templates/festival', label: 'Festival Templates' },

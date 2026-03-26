@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/metadata';
-import HowItWorks from '@/components/sections/HowItWorks';
-import FAQ from '@/components/sections/FAQ';
-import CTABanner from '@/components/sections/CTABanner';
+import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+
+const HowItWorks = nextDynamic(() => import('@/components/sections/HowItWorks'));
+const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import { HOME_FAQ } from '@/data/faq';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'How It Works \u2014 Face Swap in 4 Easy Steps',

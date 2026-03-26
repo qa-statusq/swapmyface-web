@@ -48,6 +48,7 @@ export const FOOTER_LINKS = {
     { href: '/templates/festival/new-year', label: 'New Year Face Swap' },
   ],
   legal: [
+    { href: '/about', label: 'About Us' },
     { href: '/privacy', label: 'Privacy Policy' },
     { href: '/terms', label: 'Terms of Service' },
     { href: '/responsible-use', label: 'Responsible Use' },

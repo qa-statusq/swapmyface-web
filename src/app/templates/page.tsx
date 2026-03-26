@@ -3,10 +3,14 @@ import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { TEMPLATE_CATEGORIES } from '@/data/templates';
 import { FESTIVALS } from '@/data/festivals';
-import CTABanner from '@/components/sections/CTABanner';
+import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import JsonLd from '@/components/seo/JsonLd';
 import { SITE_URL } from '@/lib/constants';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = generatePageMetadata({
   title: '500+ Face Swap Templates \u2014 Festival, Couple, Kids & Trending',
@@ -41,7 +45,7 @@ export default function TemplatesPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+          <h1 className="hero-heading text-4xl font-extrabold leading-tight sm:text-5xl">
             500+ Face Swap Templates &mdash; New Added Every Day
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -53,13 +57,13 @@ export default function TemplatesPage() {
       {/* Categories */}
       <section className="py-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <h2 className="mb-8 text-2xl font-bold">Template Categories</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="reveal mb-8 text-2xl font-bold">Template Categories</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger">
             {TEMPLATE_CATEGORIES.map((cat) => (
               <Link
                 key={cat.slug}
                 href={cat.href}
-                className="group rounded-2xl border border-line bg-surface/50 p-6 transition-all hover:border-accent/30 hover:shadow-lg"
+                className="reveal-scale card-hover group rounded-2xl border border-line bg-surface/50 p-6"
               >
                 <div className="mb-3 flex items-center justify-between">
                   <h3 className="text-lg font-semibold group-hover:text-accent transition-colors">{cat.name}</h3>

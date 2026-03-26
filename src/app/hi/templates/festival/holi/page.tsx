@@ -6,10 +6,13 @@ import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import HreflangTags from '@/components/seo/HreflangTags';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: hi.meta.holi.title,
-  description: hi.meta.holi.description,
+  title: hi.meta.holi!.title,
+  description: hi.meta.holi!.description,
   keywords: ['होली फेस स्वैप', 'holi face swap', 'होली फोटो', 'holi photo editor'],
   alternates: {
     canonical: `${SITE_URL}/hi/templates/festival/holi`,
@@ -63,6 +66,7 @@ export default function HindiHoliPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               फ्री होली फेस स्वैप ऐप डाउनलोड करें
             </Link>
           </div>

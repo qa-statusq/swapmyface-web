@@ -4,6 +4,7 @@ import { generatePageMetadata } from '@/lib/metadata';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import { playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Trending Face Swap Templates \u2014 Viral & Popular Designs',
@@ -38,6 +39,7 @@ export default function TrendingTemplatesPage() {
           </p>
           <div className="mt-8">
             <Link href={playStoreLink('trending_templates_page')} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90">
+              <PlayStoreIcon />
               Download Free &mdash; See Trending Templates
             </Link>
           </div>

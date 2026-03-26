@@ -21,7 +21,11 @@ export function isRtlLocale(locale: Locale): boolean {
 export const localizedPaths: Record<string, Locale[]> = {
   '/': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
   '/face-swap': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
-  '/templates/festival': ['en', 'hi', 'ar', 'ja'],
+  '/how-it-works': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
+  '/templates': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
+  '/blog': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
+  '/support': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
+  '/templates/festival': ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
   '/templates/festival/diwali': ['en', 'hi'],
   '/templates/festival/holi': ['en', 'hi'],
   '/templates/festival/eid': ['en', 'ar'],

@@ -7,6 +7,8 @@ import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import HreflangTags from '@/components/seo/HreflangTags';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: hi.meta.festival.title,
   description: hi.meta.festival.description,

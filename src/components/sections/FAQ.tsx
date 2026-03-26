@@ -29,12 +29,12 @@ export default function FAQ({ items, heading = 'Frequently Asked Questions' }: F
     <section className="py-16 sm:py-20">
       <JsonLd data={schema} />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <h2 className="mb-10 text-center text-3xl font-bold sm:text-4xl">{heading}</h2>
+        <h2 className="reveal mb-10 text-center text-3xl font-bold sm:text-4xl">{heading}</h2>
         <div className="space-y-3">
           {items.map((item, index) => (
             <div
               key={index}
-              className="rounded-2xl border border-line bg-surface/50 transition-colors"
+              className="reveal rounded-2xl border border-line bg-surface/50 transition-all hover:border-accent/20"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -56,9 +56,14 @@ export default function FAQ({ items, heading = 'Frequently Asked Questions' }: F
                   <path d="M5 8l5 5 5-5" />
                 </svg>
               </button>
-              {openIndex === index && (
-                <div className="px-6 pb-5 text-muted leading-relaxed">{item.answer}</div>
-              )}
+              <div
+                className="grid transition-[grid-template-rows] duration-300 ease-out"
+                style={{ gridTemplateRows: openIndex === index ? '1fr' : '0fr' }}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-6 pb-5 text-muted leading-relaxed">{item.answer}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>

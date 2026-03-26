@@ -5,9 +5,10 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/seo/JsonLd';
-import { SITE_URL, SITE_NAME, CONTACT_EMAIL } from '@/lib/constants';
+import { SITE_URL, SITE_NAME, CONTACT_EMAIL, PLAY_STORE_URL } from '@/lib/constants';
 import { PRIMARY_KEYWORDS } from '@/lib/keywords';
 import FloatingCTA from '@/components/ui/FloatingCTA';
+import PageTransition from '@/components/providers/PageTransition';
 import ScrollToTop from '@/components/ui/ScrollToTop';
 import ThemeProvider from '@/components/providers/ThemeProvider';
 
@@ -72,6 +73,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+  icons: {
+    icon: '/images/icons/icon-192.png',
+    apple: '/images/icons/icon-192.png',
+  },
   verification: {
     // Replace with your actual Google Search Console verification code
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || 'YOUR_GOOGLE_VERIFICATION_CODE',
@@ -83,14 +88,25 @@ const organizationSchema = {
   '@type': 'Organization',
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/icons/logo.png`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${SITE_URL}/images/icons/logo.png`,
+    width: 512,
+    height: 512,
+  },
+  image: `${SITE_URL}/images/icons/logo.png`,
   description:
     'SwapMyFace is the best free AI face swap app with 500+ templates.',
+  foundingDate: '2024',
   contactPoint: {
     '@type': 'ContactPoint',
     email: CONTACT_EMAIL,
     contactType: 'customer support',
+    availableLanguage: ['English', 'Hindi', 'Arabic', 'Japanese', 'Korean', 'Vietnamese'],
   },
+  sameAs: [
+    PLAY_STORE_URL,
+  ],
 };
 
 const softwareAppSchema = {
@@ -101,13 +117,19 @@ const softwareAppSchema = {
   applicationCategory: 'PhotographyApplication',
   description:
     'Free AI face swap app with 500+ templates. Unlimited swaps, ultra-realistic full HD results.',
+  url: SITE_URL,
+  downloadUrl: PLAY_STORE_URL,
+  installUrl: PLAY_STORE_URL,
   offers: {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
   },
   featureList:
     'AI Face Swap, 500+ Templates, Festival Templates, Couple Templates, Kids Templates, Custom Photo Swap, Ultra HD Results, 100% Free, Unlimited Swaps',
+  screenshot: `${SITE_URL}/images/og/home.jpg`,
+  inLanguage: ['en', 'hi', 'ar', 'ja', 'ko', 'vi'],
 };
 
 export default function RootLayout({
@@ -116,8 +138,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} h-full antialiased`}>
+    <html lang="en" suppressHydrationWarning className={`${poppins.variable} h-full antialiased`}>
       <head>
+        {/* Prevent theme flash: apply data-theme before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t){var h=new Date().getHours();t=h>=6&&h<18?'light':'dark'}document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`,
+          }}
+        />
         {/* Mobile meta tags */}
         <meta name="theme-color" content="#09111f" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -135,7 +163,9 @@ export default function RootLayout({
           <JsonLd data={organizationSchema} />
           <JsonLd data={softwareAppSchema} />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
           <FloatingCTA />
           <ScrollToTop />

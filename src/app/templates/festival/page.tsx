@@ -2,14 +2,18 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { FESTIVALS } from '@/data/festivals';
-import CTABanner from '@/components/sections/CTABanner';
+import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import HreflangTags from '@/components/seo/HreflangTags';
 import JsonLd from '@/components/seo/JsonLd';
 import { SITE_URL } from '@/lib/constants';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Festival Face Swap Templates \u2014 Diwali, Christmas, Eid, Holi & More',
+  title: 'Festival Face Swap Templates \u2014 Diwali, Eid, Holi & More',
   description:
     'Celebrate every festival with SwapMyFace! 500+ festival face swap templates for Diwali, Christmas, Eid, Holi, Halloween, New Year & more. Free, unlimited, HD quality.',
   path: '/templates/festival',

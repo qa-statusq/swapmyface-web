@@ -31,7 +31,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2 text-lg font-bold">
               <Image
                 src="/images/icons/icon-192.png"
-                alt="SwapMyFace"
+                alt="SwapMyFace logo"
                 width={32}
                 height={32}
                 className="rounded-lg"

@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import JsonLd from '@/components/seo/JsonLd';
 import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
@@ -34,7 +35,7 @@ export async function generateMetadata({
       type: 'article',
       publishedTime: post.date,
       modifiedTime: post.updatedDate || post.date,
-      authors: [SITE_NAME],
+      authors: [post.author?.name || SITE_NAME],
     },
     twitter: {
       card: 'summary_large_image',
@@ -61,9 +62,10 @@ export default async function BlogPostPage({
     datePublished: post.date,
     dateModified: post.updatedDate || post.date,
     author: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
+      '@type': 'Person',
+      name: post.author?.name || SITE_NAME,
+      jobTitle: post.author?.role,
+      url: `${SITE_URL}/about`,
     },
     publisher: {
       '@type': 'Organization',
@@ -100,7 +102,20 @@ export default async function BlogPostPage({
             <time dateTime={post.date}>{post.date}</time>
             <span>{post.readTime}</span>
           </div>
-          <h1 className="text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+          {post.author && (
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-accent/15 text-sm font-bold text-accent">
+                {post.author.name.charAt(0)}
+              </div>
+              <div>
+                <Link href="/about" className="text-sm font-semibold hover:text-accent transition-colors">
+                  {post.author.name}
+                </Link>
+                <p className="text-xs text-muted">{post.author.role}</p>
+              </div>
+            </div>
+          )}
+          <h1 className="hero-heading text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
             {post.title}
           </h1>
           <p className="mt-4 text-lg text-muted leading-relaxed">{post.description}</p>
@@ -111,7 +126,7 @@ export default async function BlogPostPage({
       <article className="pb-8">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           {post.sections.map((section, i) => (
-            <section key={i} className="mb-10">
+            <section key={i} className="reveal mb-10">
               <h2 className="mb-4 text-2xl font-bold">{section.heading}</h2>
               {section.content.map((paragraph, j) => (
                 <p key={j} className="mb-4 text-muted leading-relaxed">
@@ -122,7 +137,7 @@ export default async function BlogPostPage({
           ))}
 
           {/* Internal Links */}
-          <div className="my-10 rounded-2xl border border-line bg-surface/50 p-6">
+          <div className="reveal my-10 rounded-2xl border border-line bg-surface/50 p-6">
             <h3 className="mb-4 text-lg font-semibold">Related Pages</h3>
             <div className="flex flex-wrap gap-3">
               {post.internalLinks.map((link) => (
@@ -147,6 +162,7 @@ export default async function BlogPostPage({
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               Download Free on Google Play
             </Link>
           </div>

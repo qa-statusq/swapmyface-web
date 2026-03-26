@@ -2,10 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { FREE_FACE_SWAP_FAQ } from '@/data/faq';
-import FAQ from '@/components/sections/FAQ';
-import CTABanner from '@/components/sections/CTABanner';
+import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+
+const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import { playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Free Face Swap \u2014 100% Free AI Face Swap App, No Cost Ever',
@@ -32,7 +37,7 @@ export default function FreeFaceSwapPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+          <h1 className="hero-heading text-4xl font-extrabold leading-tight sm:text-5xl">
             Truly Free Face Swap &mdash; Unlimited Forever, Zero Cost
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -45,6 +50,7 @@ export default function FreeFaceSwapPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               Download Free &mdash; Zero Cost Forever
             </Link>
           </div>
@@ -53,7 +59,7 @@ export default function FreeFaceSwapPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">What Free Actually Means in SwapMyFace</h2>
+          <h2 className="reveal text-3xl font-bold">What Free Actually Means in SwapMyFace</h2>
           <p className="mt-4 text-muted leading-relaxed">
             Most face swap apps say &ldquo;free&rdquo; but mean free to download only. In SwapMyFace, free means truly free in every way:
           </p>
@@ -75,7 +81,7 @@ export default function FreeFaceSwapPage() {
 
       <section className="border-y border-line bg-bg-soft/50 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">500+ Free Templates Across Every Category</h2>
+          <h2 className="reveal text-3xl font-bold">500+ Free Templates Across Every Category</h2>
           <p className="mt-4 text-muted leading-relaxed">
             Every template in our massive library is completely free to use. All 500+ templates across festivals, couples, love, kids, and trending categories. No premium tier, no locked content.
           </p>
@@ -90,7 +96,7 @@ export default function FreeFaceSwapPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">Free Does Not Mean Low Quality</h2>
+          <h2 className="reveal text-3xl font-bold">Free Does Not Mean Low Quality</h2>
           <p className="mt-4 text-muted leading-relaxed">
             Just because SwapMyFace is free does not mean it compromises on results. Our deep AI engine delivers full HD resolution on every single swap, ultra-realistic face blending, natural skin tone matching, and seamless edge detection. Free and professional quality at the same time.
           </p>

@@ -6,10 +6,13 @@ import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import HreflangTags from '@/components/seo/HreflangTags';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: ar.meta.eid.title,
-  description: ar.meta.eid.description,
+  title: ar.meta.eid!.title,
+  description: ar.meta.eid!.description,
   keywords: ['عيد فيس سواب', 'eid face swap', 'عيد الفطر face swap', 'عيد الأضحى', 'eid mubarak photo'],
   alternates: {
     canonical: `${SITE_URL}/ar/templates/festival/eid`,
@@ -67,6 +70,7 @@ export default function ArabicEidPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               حمل تطبيق العيد مجاناً
             </Link>
           </div>

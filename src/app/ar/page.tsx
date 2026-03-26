@@ -2,21 +2,31 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ar } from '@/data/translations/ar';
 import { SITE_URL, playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+import nextDynamic from 'next/dynamic';
 import StatsCounter from '@/components/sections/StatsCounter';
-import FeatureGrid from '@/components/sections/FeatureGrid';
-import FAQ from '@/components/sections/FAQ';
-import CTABanner from '@/components/sections/CTABanner';
 import HreflangTags from '@/components/seo/HreflangTags';
+
+const FeatureGrid = nextDynamic(() => import('@/components/sections/FeatureGrid'));
+const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
+const FaceSwapShowcase = nextDynamic(() => import('@/components/sections/FaceSwapShowcase'));
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: ar.meta.home.title,
   description: ar.meta.home.description,
+  keywords: ['تبديل الوجوه', 'تطبيق تبديل الوجوه', 'تبديل وجوه مجاني', 'AI face swap', 'face swap'],
   alternates: {
     canonical: `${SITE_URL}/ar`,
     languages: {
       en: SITE_URL,
       hi: `${SITE_URL}/hi`,
       ar: `${SITE_URL}/ar`,
+      ja: `${SITE_URL}/ja`,
+      ko: `${SITE_URL}/ko`,
+      vi: `${SITE_URL}/vi`,
       'x-default': SITE_URL,
     },
   },
@@ -24,7 +34,7 @@ export const metadata: Metadata = {
     title: ar.meta.home.title,
     description: ar.meta.home.description,
     locale: 'ar_SA',
-    alternateLocale: ['en_US', 'hi_IN'],
+    alternateLocale: ['en_US', 'hi_IN', 'ja_JP', 'ko_KR', 'vi_VN'],
   },
 };
 
@@ -57,6 +67,7 @@ export default function ArabicHomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-accent/25 transition-all hover:bg-accent/90 hover:shadow-xl"
               >
+                <PlayStoreIcon />
                 {ar.hero.cta}
               </Link>
               <Link
@@ -71,6 +82,7 @@ export default function ArabicHomePage() {
       </section>
 
       <StatsCounter translations={ar.stats} />
+      <FaceSwapShowcase translations={ar.faceSwapShowcase} />
 
       {/* Eid Highlight */}
       <section className="border-y border-line bg-bg-soft/50 py-16 sm:py-20">

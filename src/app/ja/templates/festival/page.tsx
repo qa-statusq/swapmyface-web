@@ -6,6 +6,8 @@ import { FESTIVALS } from '@/data/festivals';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: ja.meta.festival.title,
   description: ja.meta.festival.description,

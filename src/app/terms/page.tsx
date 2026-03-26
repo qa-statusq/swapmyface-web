@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/metadata';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = generatePageMetadata({
   title: 'Terms of Service',
   description:

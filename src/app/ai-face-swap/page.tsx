@@ -2,10 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { AI_FACE_SWAP_FAQ } from '@/data/faq';
-import FAQ from '@/components/sections/FAQ';
-import CTABanner from '@/components/sections/CTABanner';
+import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+
+const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
+const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import { playStoreLink } from '@/lib/constants';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'AI Face Swap \u2014 Free AI-Powered Face Swap App',
@@ -32,7 +37,7 @@ export default function AIFaceSwapPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+          <h1 className="hero-heading text-4xl font-extrabold leading-tight sm:text-5xl">
             AI Face Swap &mdash; Free AI-Powered Face Swap App
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -45,6 +50,7 @@ export default function AIFaceSwapPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               Download Free AI Face Swap App
             </Link>
           </div>
@@ -53,7 +59,7 @@ export default function AIFaceSwapPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">How AI Face Swap Technology Works</h2>
+          <h2 className="reveal text-3xl font-bold">How AI Face Swap Technology Works</h2>
           <p className="mt-4 text-muted leading-relaxed">
             AI face swap goes far beyond basic photo editing. Our deep learning neural networks analyze facial features at the pixel level, detecting landmarks, geometry, skin tones, and lighting conditions. The AI then seamlessly blends the source face into the target image, producing results that look genuinely real and natural.
           </p>
@@ -65,8 +71,8 @@ export default function AIFaceSwapPage() {
 
       <section className="border-y border-line bg-bg-soft/50 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">What Makes SwapMyFace the Best AI Face Swap App</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <h2 className="reveal text-3xl font-bold">What Makes SwapMyFace the Best AI Face Swap App</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 stagger">
             {[
               { title: 'Advanced Deep AI Engine', desc: 'Multi-stage pipeline with face detection, alignment, blending, and HD upscaling for photorealistic results.' },
               { title: '500+ AI-Optimized Templates', desc: 'Every template is designed and optimized specifically for the best possible AI face swap result.' },
@@ -75,7 +81,7 @@ export default function AIFaceSwapPage() {
               { title: '100% Free, Unlimited', desc: 'No subscription, no credits, no cost. Unlimited AI face swaps for every user, forever.' },
               { title: 'New Templates Daily', desc: 'Festivals, couples, kids, trending \u2014 new AI-optimized templates added every day.' },
             ].map((feature) => (
-              <div key={feature.title} className="rounded-2xl border border-line bg-surface/50 p-5">
+              <div key={feature.title} className="reveal-scale card-hover rounded-2xl border border-line bg-surface/50 p-5">
                 <h3 className="font-semibold">{feature.title}</h3>
                 <p className="mt-1 text-sm text-muted">{feature.desc}</p>
               </div>
@@ -86,7 +92,7 @@ export default function AIFaceSwapPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">AI Face Swap vs Manual Photo Editing</h2>
+          <h2 className="reveal text-3xl font-bold">AI Face Swap vs Manual Photo Editing</h2>
           <p className="mt-4 text-muted leading-relaxed">
             Manual face swapping in tools like Photoshop requires hours of careful selection, masking, color correction, and blending. AI face swap technology automates this entire process in seconds, delivering results that often surpass what manual editing can achieve.
           </p>

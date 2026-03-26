@@ -7,6 +7,7 @@ import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import HreflangTags from '@/components/seo/HreflangTags';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 
 export function generateStaticParams() {
   return FESTIVALS.map((f) => ({ slug: f.slug }));
@@ -85,7 +86,7 @@ export default async function FestivalPage({
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
           <span className="text-5xl">{festival.emoji}</span>
-          <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
+          <h1 className="hero-heading mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
             {festival.name} Face Swap Templates
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
@@ -98,6 +99,7 @@ export default async function FestivalPage({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               Download Free {festival.name} Face Swap App
             </Link>
           </div>
@@ -106,7 +108,7 @@ export default async function FestivalPage({
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">How to Create {festival.name} Face Swaps</h2>
+          <h2 className="reveal text-3xl font-bold">How to Create {festival.name} Face Swaps</h2>
           <ol className="mt-6 space-y-3 text-muted">
             <li className="flex gap-3"><span className="font-bold text-accent">1.</span> Browse {festival.name} templates in SwapMyFace</li>
             <li className="flex gap-3"><span className="font-bold text-accent">2.</span> Select your favourite {festival.name} template design</li>
@@ -122,21 +124,21 @@ export default async function FestivalPage({
 
       <section className="border-y border-line bg-bg-soft/50 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <h2 className="text-3xl font-bold">Why SwapMyFace for {festival.name}</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-line bg-surface/50 p-5">
+          <h2 className="reveal text-3xl font-bold">Why SwapMyFace for {festival.name}</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 stagger">
+            <div className="reveal-scale card-hover rounded-2xl border border-line bg-surface/50 p-5">
               <h3 className="font-semibold">Dedicated {festival.name} Templates</h3>
               <p className="mt-1 text-sm text-muted">Beautiful designs crafted specifically for {festival.name} celebrations.</p>
             </div>
-            <div className="rounded-2xl border border-line bg-surface/50 p-5">
+            <div className="reveal-scale card-hover rounded-2xl border border-line bg-surface/50 p-5">
               <h3 className="font-semibold">Ultra-Realistic HD Quality</h3>
               <p className="mt-1 text-sm text-muted">Every {festival.name} face swap is full HD with natural blending.</p>
             </div>
-            <div className="rounded-2xl border border-line bg-surface/50 p-5">
+            <div className="reveal-scale card-hover rounded-2xl border border-line bg-surface/50 p-5">
               <h3 className="font-semibold">100% Free, Always</h3>
               <p className="mt-1 text-sm text-muted">All {festival.name} templates are free. No cost, no subscription.</p>
             </div>
-            <div className="rounded-2xl border border-line bg-surface/50 p-5">
+            <div className="reveal-scale card-hover rounded-2xl border border-line bg-surface/50 p-5">
               <h3 className="font-semibold">New Templates Added</h3>
               <p className="mt-1 text-sm text-muted">Fresh {festival.name} designs added regularly for every celebration.</p>
             </div>
@@ -148,13 +150,13 @@ export default async function FestivalPage({
       {relatedFestivals.length > 0 && (
         <section className="py-12 sm:py-16">
           <div className="mx-auto max-w-4xl px-4 sm:px-6">
-            <h2 className="mb-6 text-2xl font-bold">More Festival Templates</h2>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <h2 className="reveal mb-6 text-2xl font-bold">More Festival Templates</h2>
+            <div className="grid gap-3 sm:grid-cols-2 stagger">
               {relatedFestivals.map((rf) => rf && (
                 <Link
                   key={rf.slug}
                   href={`/templates/festival/${rf.slug}`}
-                  className="group flex items-center gap-3 rounded-xl border border-line bg-surface/50 p-4 transition-all hover:border-accent/30"
+                  className="reveal-scale card-hover group flex items-center gap-3 rounded-xl border border-line bg-surface/50 p-4"
                 >
                   <span className="text-2xl">{rf.emoji}</span>
                   <div>

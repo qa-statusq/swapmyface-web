@@ -6,10 +6,13 @@ import FAQ from '@/components/sections/FAQ';
 import CTABanner from '@/components/sections/CTABanner';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import HreflangTags from '@/components/seo/HreflangTags';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
+
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: hi.meta.diwali.title,
-  description: hi.meta.diwali.description,
+  title: hi.meta.diwali!.title,
+  description: hi.meta.diwali!.description,
   keywords: ['दिवाली फेस स्वैप', 'diwali face swap', 'दिवाली फोटो', 'diwali photo editor', 'दिवाली टेम्प्लेट'],
   alternates: {
     canonical: `${SITE_URL}/hi/templates/festival/diwali`,
@@ -67,6 +70,7 @@ export default function HindiDiwaliPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 rounded-xl bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-accent/90"
             >
+              <PlayStoreIcon />
               फ्री दिवाली फेस स्वैप ऐप डाउनलोड करें
             </Link>
           </div>

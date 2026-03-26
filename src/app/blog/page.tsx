@@ -4,6 +4,8 @@ import { generatePageMetadata } from '@/lib/metadata';
 import { BLOG_POSTS } from '@/data/blog';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = generatePageMetadata({
   title: 'Blog \u2014 Face Swap Tips, Guides & Ideas',
   description:
@@ -26,10 +28,10 @@ export default function BlogPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">
+          <h1 className="hero-heading text-4xl font-extrabold leading-tight sm:text-5xl">
             SwapMyFace Blog
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
+          <p className="hero-paragraph mx-auto mt-6 max-w-2xl text-lg text-muted leading-relaxed">
             Guides, tips, ideas, and insights about AI face swap technology, creative templates, and getting the best results with SwapMyFace.
           </p>
         </div>
@@ -37,12 +39,12 @@ export default function BlogPage() {
 
       <section className="pb-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
-          <div className="grid gap-6">
+          <div className="grid gap-6 stagger">
             {BLOG_POSTS.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group rounded-2xl border border-line bg-surface/50 p-6 transition-all hover:border-accent/30 hover:shadow-lg sm:p-8"
+                className="reveal card-hover group rounded-2xl border border-line bg-surface/50 p-6 sm:p-8"
               >
                 <div className="mb-3 flex flex-wrap items-center gap-3 text-sm text-muted">
                   <span className="rounded-full bg-accent/15 px-3 py-1 text-xs font-semibold text-accent">

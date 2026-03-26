@@ -38,17 +38,17 @@ export default function FeatureGrid({ translations }: FeatureGridProps) {
   return (
     <section className="py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center">
+        <div className="reveal text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">{t.heading}</h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted">{t.subtitle}</p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger">
           {t.items.map((feature, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-line bg-surface/50 p-6 transition-colors hover:border-accent/30"
+              className="reveal-scale card-hover group rounded-2xl border border-line bg-surface/50 p-6"
             >
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent">
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-accent/15 text-accent transition-transform duration-300 group-hover:scale-110">
                 {icons[i]}
               </div>
               <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>

@@ -8,6 +8,7 @@ import { NAV_LINKS } from '@/lib/constants';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import { getLocaleFromPathname, getTranslations } from '@/lib/getTranslations';
+import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 
 export default function Header() {
   const pathname = usePathname();
@@ -30,7 +31,7 @@ export default function Header() {
         <Link href={`${localePrefix}/`} className="flex items-center gap-2 text-xl font-bold tracking-tight">
           <Image
             src="/images/icons/icon-192.png"
-            alt="SwapMyFace"
+            alt="SwapMyFace logo — free AI face swap app"
             width={36}
             height={36}
             className="rounded-xl"
@@ -65,8 +66,9 @@ export default function Header() {
             href="https://play.google.com/store/apps/details?id=com.swapmyface.aifaceswap&utm_source=website&utm_medium=header&utm_campaign=nav_cta"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
+            className="ml-2 inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent/90"
           >
+            <PlayStoreIcon size={16} />
             {downloadLabel}
           </Link>
         </nav>
@@ -115,8 +117,9 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 block rounded-lg bg-accent px-4 py-3 text-center text-sm font-semibold text-white"
+            className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3.5 text-sm font-semibold text-white"
           >
+            <PlayStoreIcon size={16} />
             {downloadLabelMobile}
           </Link>
         </nav>
