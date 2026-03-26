@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 
 interface BeforeAfterSliderProps {
@@ -22,7 +22,7 @@ export default function BeforeAfterSlider({
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
+  const dragging = useRef(false);
 
   const updatePosition = useCallback((clientX: number) => {
     const container = containerRef.current;
@@ -34,18 +34,21 @@ export default function BeforeAfterSlider({
   }, []);
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    setIsDragging(true);
+    e.preventDefault();
+    dragging.current = true;
     updatePosition(e.clientX);
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    // Capture on the container, not the target (fixes mobile image elements)
+    containerRef.current?.setPointerCapture(e.pointerId);
   }, [updatePosition]);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isDragging) return;
+    if (!dragging.current) return;
+    e.preventDefault();
     updatePosition(e.clientX);
-  }, [isDragging, updatePosition]);
+  }, [updatePosition]);
 
   const handlePointerUp = useCallback(() => {
-    setIsDragging(false);
+    dragging.current = false;
   }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
@@ -62,6 +65,7 @@ export default function BeforeAfterSlider({
     <div
       ref={containerRef}
       className="group relative aspect-[4/5] w-full cursor-col-resize select-none overflow-hidden rounded-2xl border border-line bg-surface/50"
+      style={{ touchAction: 'none' }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -79,9 +83,10 @@ export default function BeforeAfterSlider({
         src={afterImage}
         alt={afterAlt}
         fill
-        className="object-cover"
+        className="pointer-events-none object-cover"
         sizes="(max-width: 640px) 100vw, 50vw"
         priority
+        draggable={false}
       />
 
       {/* Before image (clipped) */}
@@ -93,19 +98,20 @@ export default function BeforeAfterSlider({
           src={beforeImage}
           alt={beforeAlt}
           fill
-          className="object-cover"
+          className="pointer-events-none object-cover"
           sizes="(max-width: 640px) 100vw, 50vw"
           priority
+          draggable={false}
         />
       </div>
 
       {/* Slider line */}
       <div
-        className="absolute top-0 bottom-0 z-10 w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)]"
+        className="pointer-events-none absolute top-0 bottom-0 z-10 w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)]"
         style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
       >
         {/* Handle */}
-        <div className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-accent shadow-lg shadow-black/30">
+        <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-accent shadow-lg shadow-black/30">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
             <path d="M5 3L2 8l3 5" />
             <path d="M11 3l3 5-3 5" />
