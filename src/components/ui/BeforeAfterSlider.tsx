@@ -21,6 +21,7 @@ export default function BeforeAfterSlider({
   afterAlt = 'After face swap',
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
   const dragging = useRef(false);
 
@@ -33,12 +34,13 @@ export default function BeforeAfterSlider({
     setPosition(pct);
   }, []);
 
+  /* Only the handle triggers dragging — not the whole image area */
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     dragging.current = true;
     updatePosition(e.clientX);
-    // Capture on the container, not the target (fixes mobile image elements)
-    containerRef.current?.setPointerCapture(e.pointerId);
+    handleRef.current?.setPointerCapture(e.pointerId);
   }, [updatePosition]);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
@@ -64,12 +66,7 @@ export default function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className="group relative aspect-[4/5] w-full cursor-col-resize select-none overflow-hidden rounded-2xl border border-line bg-surface/50"
-      style={{ touchAction: 'none' }}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
+      className="group relative aspect-[4/5] w-full select-none overflow-hidden rounded-2xl border border-line bg-surface/50"
       role="slider"
       aria-label="Before and after comparison slider"
       aria-valuenow={Math.round(position)}
@@ -105,13 +102,26 @@ export default function BeforeAfterSlider({
         />
       </div>
 
-      {/* Slider line */}
+      {/* Draggable slider track — only this area responds to touch/drag */}
       <div
-        className="pointer-events-none absolute top-0 bottom-0 z-10 w-0.5 bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)]"
-        style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
+        ref={handleRef}
+        className="absolute top-0 bottom-0 z-10 cursor-col-resize"
+        style={{
+          left: `${position}%`,
+          transform: 'translateX(-50%)',
+          width: '44px',
+          touchAction: 'none',
+        }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
       >
-        {/* Handle */}
-        <div className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-accent shadow-lg shadow-black/30">
+        {/* Visible slider line */}
+        <div className="pointer-events-none absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-white shadow-[0_0_8px_rgba(0,0,0,0.4)]" />
+
+        {/* Handle circle */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-accent shadow-lg shadow-black/30">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
             <path d="M5 3L2 8l3 5" />
             <path d="M11 3l3 5-3 5" />

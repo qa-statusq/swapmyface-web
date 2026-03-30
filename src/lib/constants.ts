@@ -1,8 +1,5 @@
 export const SITE_NAME = 'SwapMyFace';
 export const SITE_URL = 'https://facefitswap.com';
-export const SITE_DESCRIPTION =
-  'SwapMyFace is the best free AI face swap app with 500+ templates for festivals, couples, kids & trending. Unlimited swaps, ultra-realistic HD results. Download free on Google Play.';
-
 export const CONTACT_EMAIL = 'contact@facefitswap.com';
 
 export const PLAY_STORE_URL =
@@ -10,8 +7,6 @@ export const PLAY_STORE_URL =
 
 export const playStoreLink = (campaign: string) =>
   `${PLAY_STORE_URL}&utm_source=website&utm_medium=landing_page&utm_campaign=${campaign}`;
-
-export const APP_TITLE = 'SwapMyFace \u2013 AI Face Swap App';
 
 export const NAV_LINKS = [
   { href: '/', label: 'Home' },
