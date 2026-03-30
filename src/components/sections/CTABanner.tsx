@@ -42,7 +42,7 @@ export default function CTABanner({
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 <PlayStoreIcon />
-                Download Free on Google Play
+                Get SwapMyFace Free on Google Play
               </Link>
             </div>
           </div>

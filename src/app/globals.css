@@ -8,7 +8,7 @@
   --color-text: var(--theme-text);
   --color-muted: var(--theme-muted);
   --color-line: var(--theme-line);
-  --color-accent: #5e8cff;
+  --color-accent: var(--theme-accent);
   --color-accent-2: #28d3b8;
   --color-danger: #ff7a7a;
   --font-sans: var(--font-poppins);
@@ -24,6 +24,7 @@ html[data-theme='dark'] {
   --theme-text: #f4f7fb;
   --theme-muted: #b4c1d6;
   --theme-line: rgba(255, 255, 255, 0.12);
+  --theme-accent: #5e8cff;
 }
 
 /* Light theme */
@@ -33,8 +34,9 @@ html[data-theme='light'] {
   --theme-panel: #e4e8f0;
   --theme-surface: rgba(228, 232, 240, 0.78);
   --theme-text: #0f1729;
-  --theme-muted: #5a6578;
+  --theme-muted: #4b5563;
   --theme-line: rgba(0, 0, 0, 0.1);
+  --theme-accent: #2563eb;
 }
 
 html {
