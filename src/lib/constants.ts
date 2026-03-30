@@ -47,6 +47,14 @@ export const FOOTER_LINKS = {
     { href: '/templates/festival/holi', label: 'Holi Face Swap' },
     { href: '/templates/festival/new-year', label: 'New Year Face Swap' },
   ],
+  blog: [
+    { href: '/blog', label: 'All Articles' },
+    { href: '/blog/best-face-swap-apps-2026', label: 'Best Face Swap Apps 2026' },
+    { href: '/blog/ai-face-swap-technology-explained', label: 'AI Face Swap Explained' },
+    { href: '/blog/face-swap-vs-deepfake', label: 'Face Swap vs Deepfake' },
+    { href: '/blog/face-swap-for-instagram', label: 'Face Swap for Instagram' },
+    { href: '/blog/face-swap-app-vs-photoshop', label: 'Face Swap vs Photoshop' },
+  ],
   legal: [
     { href: '/about', label: 'About Us' },
     { href: '/privacy', label: 'Privacy Policy' },

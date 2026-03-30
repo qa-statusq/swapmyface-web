@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-bg-soft">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-6">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 text-lg font-bold">
@@ -86,6 +86,22 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               {FOOTER_LINKS.festivals.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-sm text-muted hover:text-text transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Blog */}
+          <div>
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted">
+              Blog
+            </h3>
+            <ul className="space-y-2">
+              {FOOTER_LINKS.blog.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm text-muted hover:text-text transition-colors">
                     {link.label}

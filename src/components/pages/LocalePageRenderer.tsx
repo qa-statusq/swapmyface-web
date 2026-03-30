@@ -59,7 +59,7 @@ function HowItWorksContent({ t, prefix }: { t: ReturnType<typeof getTranslations
     <>
       <HreflangTags path="/how-it-works" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
-        <Breadcrumbs items={[{ label: t.nav.home, href: prefix + '/' }, { label: t.nav.howItWorks, href: prefix + '/how-it-works' }]} />
+        <Breadcrumbs items={[{ label: t.nav.home, href: prefix }, { label: t.nav.howItWorks, href: prefix + '/how-it-works' }]} />
       </div>
       <section className="py-8 sm:py-12">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
@@ -90,7 +90,7 @@ function TemplatesContent({ t, prefix, locale }: { t: ReturnType<typeof getTrans
         numberOfItems: 500,
       }} />
       <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
-        <Breadcrumbs items={[{ label: t.nav.home, href: prefix + '/' }, { label: t.nav.templates, href: prefix + '/templates' }]} />
+        <Breadcrumbs items={[{ label: t.nav.home, href: prefix }, { label: t.nav.templates, href: prefix + '/templates' }]} />
       </div>
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
@@ -146,7 +146,7 @@ function FestivalTemplatesContent({ t, prefix, locale }: { t: ReturnType<typeof 
         isPartOf: { '@type': 'WebSite', name: 'SwapMyFace', url: SITE_URL },
       }} />
       <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
-        <Breadcrumbs items={[{ label: t.nav.home, href: prefix + '/' }, { label: t.nav.templates, href: prefix + '/templates' }, { label: t.sections.festivals, href: prefix + '/templates/festival' }]} />
+        <Breadcrumbs items={[{ label: t.nav.home, href: prefix }, { label: t.nav.templates, href: prefix + '/templates' }, { label: t.sections.festivals, href: prefix + '/templates/festival' }]} />
       </div>
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-6xl px-4 text-center sm:px-6">
@@ -182,7 +182,7 @@ function TemplateCategoryContent({ t, prefix, category }: { t: ReturnType<typeof
   return (
     <>
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
-        <Breadcrumbs items={[{ label: t.nav.home, href: prefix + '/' }, { label: t.nav.templates, href: prefix + '/templates' }, { label: cat.name, href: `${prefix}${cat.href}` }]} />
+        <Breadcrumbs items={[{ label: t.nav.home, href: prefix }, { label: t.nav.templates, href: prefix + '/templates' }, { label: cat.name, href: `${prefix}${cat.href}` }]} />
       </div>
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
@@ -207,7 +207,7 @@ function BlogContent({ t, prefix }: { t: ReturnType<typeof getTranslations>; pre
     <>
       <HreflangTags path="/blog" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
-        <Breadcrumbs items={[{ label: t.nav.home, href: prefix + '/' }, { label: t.nav.blog, href: prefix + '/blog' }]} />
+        <Breadcrumbs items={[{ label: t.nav.home, href: prefix }, { label: t.nav.blog, href: prefix + '/blog' }]} />
       </div>
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
@@ -245,7 +245,7 @@ function SupportContent({ t, prefix }: { t: ReturnType<typeof getTranslations>; 
     <>
       <HreflangTags path="/support" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
-        <Breadcrumbs items={[{ label: t.nav.home, href: prefix + '/' }, { label: t.nav.support, href: prefix + '/support' }]} />
+        <Breadcrumbs items={[{ label: t.nav.home, href: prefix }, { label: t.nav.support, href: prefix + '/support' }]} />
       </div>
       <div className="legal-shell">
         <div className="legal-meta">

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { locales, localeConfig, defaultLocale, type Locale } from '@/lib/i18n';
+import { locales, localeConfig, localizedPaths, defaultLocale, type Locale } from '@/lib/i18n';
 
 function getCurrentLocale(pathname: string): Locale {
   const segment = pathname.split('/')[1];
@@ -16,6 +16,32 @@ function getPathWithoutLocale(pathname: string, currentLocale: Locale): string {
   if (currentLocale === defaultLocale) return pathname;
   const withoutLocale = pathname.replace(`/${currentLocale}`, '') || '/';
   return withoutLocale;
+}
+
+/**
+ * Find the best locale path for the given base path and target locale.
+ * If the exact path has a locale version, use it.
+ * Otherwise, walk up the path hierarchy to find the closest match.
+ * Falls back to the locale homepage.
+ */
+function resolveLocalePath(basePath: string, locale: Locale): string {
+  // Check exact path first
+  if (localizedPaths[basePath]?.includes(locale)) {
+    return locale === defaultLocale ? basePath : `/${locale}${basePath}`;
+  }
+
+  // Walk up path segments: /blog/some-slug → /blog → /
+  const segments = basePath.split('/').filter(Boolean);
+  while (segments.length > 0) {
+    segments.pop();
+    const parentPath = segments.length === 0 ? '/' : `/${segments.join('/')}`;
+    if (localizedPaths[parentPath]?.includes(locale)) {
+      return locale === defaultLocale ? parentPath : `/${locale}${parentPath === '/' ? '' : parentPath}`;
+    }
+  }
+
+  // Ultimate fallback: locale homepage
+  return locale === defaultLocale ? '/' : `/${locale}`;
 }
 
 export default function LanguageSwitcher() {
@@ -38,7 +64,7 @@ export default function LanguageSwitcher() {
 
   const switchLocale = (locale: Locale) => {
     const basePath = getPathWithoutLocale(pathname, currentLocale);
-    const newPath = locale === defaultLocale ? basePath : `/${locale}${basePath === '/' ? '' : basePath}`;
+    const newPath = resolveLocalePath(basePath, locale);
     setOpen(false);
     router.push(newPath);
   };

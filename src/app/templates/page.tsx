@@ -5,6 +5,7 @@ import { TEMPLATE_CATEGORIES } from '@/data/templates';
 import { FESTIVALS } from '@/data/festivals';
 import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
 import JsonLd from '@/components/seo/JsonLd';
@@ -33,6 +34,7 @@ export default function TemplatesPage() {
 
   return (
     <>
+      <HreflangTags path="/templates" />
       <JsonLd data={collectionSchema} />
       <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
         <Breadcrumbs

@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { SITE_NAME, SITE_URL } from './constants';
+import { localizedPaths, type Locale } from './i18n';
 
 interface PageMetaOptions {
   title: string;
@@ -7,6 +8,19 @@ interface PageMetaOptions {
   path: string;
   ogImage?: string;
   keywords?: string[];
+}
+
+/** Build hreflang alternates for a given path if locale versions exist */
+function buildLanguages(path: string): Record<string, string> | undefined {
+  const locales = localizedPaths[path];
+  if (!locales || locales.length <= 1) return undefined;
+
+  const languages: Record<string, string> = {};
+  for (const loc of locales) {
+    languages[loc] = loc === 'en' ? `${SITE_URL}${path}` : `${SITE_URL}/${loc}${path}`;
+  }
+  languages['x-default'] = `${SITE_URL}${path}`;
+  return languages;
 }
 
 export function generatePageMetadata({
@@ -17,6 +31,7 @@ export function generatePageMetadata({
   keywords,
 }: PageMetaOptions): Metadata {
   const url = `${SITE_URL}${path}`;
+  const languages = buildLanguages(path);
 
   return {
     title,
@@ -24,6 +39,7 @@ export function generatePageMetadata({
     keywords,
     alternates: {
       canonical: url,
+      ...(languages ? { languages } : {}),
     },
     openGraph: {
       title,

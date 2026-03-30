@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/metadata';
 import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 const HowItWorks = nextDynamic(() => import('@/components/sections/HowItWorks'));
 const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
@@ -21,6 +22,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function HowItWorksPage() {
   return (
     <>
+      <HreflangTags path="/how-it-works" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[

@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/metadata';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { SITE_URL } from '@/lib/constants';
 
 export const dynamic = 'force-static';
 
@@ -10,9 +13,22 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/terms',
 });
 
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Terms of Service',
+  description: 'SwapMyFace Terms of Service — user responsibilities, prohibited uses, and service limitations.',
+  url: `${SITE_URL}/terms`,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'SwapMyFace' },
+  dateModified: '2026-03-12',
+};
+
 export default function TermsPage() {
   return (
     <div className="legal-shell">
+      <JsonLd data={webPageSchema} />
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms of Service', href: '/terms' }]} />
       <div className="legal-meta">
         <span>Terms of Service</span>
         <span>Last updated: March 12, 2026</span>

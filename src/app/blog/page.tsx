@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BLOG_POSTS } from '@/data/blog';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 export const dynamic = 'force-static';
 
@@ -17,6 +18,7 @@ export const metadata: Metadata = generatePageMetadata({
 export default function BlogPage() {
   return (
     <>
+      <HreflangTags path="/blog" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[

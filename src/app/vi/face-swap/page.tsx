@@ -4,6 +4,7 @@ import { vi } from '@/data/translations/vi';
 import { SITE_URL, playStoreLink } from '@/lib/constants';
 import nextDynamic from 'next/dynamic';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import HreflangTags from '@/components/seo/HreflangTags';
 
 const FAQ = nextDynamic(() => import('@/components/sections/FAQ'));
 const CTABanner = nextDynamic(() => import('@/components/sections/CTABanner'));
@@ -39,6 +40,7 @@ export const metadata: Metadata = {
 export default function VietnameseFaceSwapPage() {
   return (
     <>
+      <HreflangTags path="/face-swap" />
       <div className="mx-auto max-w-4xl px-4 pt-10 sm:px-6">
         <Breadcrumbs items={[{ label: 'Trang chủ', href: '/vi' }, { label: 'Ghép mặt', href: '/vi/face-swap' }]} />
       </div>

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/metadata';
-import { CONTACT_EMAIL, PLAY_STORE_URL } from '@/lib/constants';
+import { CONTACT_EMAIL, PLAY_STORE_URL, SITE_URL } from '@/lib/constants';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import JsonLd from '@/components/seo/JsonLd';
 
 export const dynamic = 'force-static';
 
@@ -13,9 +14,20 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/about',
 });
 
+const aboutPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About SwapMyFace',
+  description: 'Learn about SwapMyFace, the free AI face swap app trusted by users worldwide.',
+  url: `${SITE_URL}/about`,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'SwapMyFace' },
+};
+
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={aboutPageSchema} />
       <div className="mx-auto max-w-3xl px-4 pt-10 sm:px-6">
         <Breadcrumbs
           items={[

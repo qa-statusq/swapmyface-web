@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link href={`${localePrefix}/`} className="flex items-center gap-2 text-xl font-bold tracking-tight">
+        <Link href={localePrefix || '/'} className="flex items-center gap-2 text-xl font-bold tracking-tight">
           <Image
             src="/images/icons/icon-192.png"
             alt="SwapMyFace logo — free AI face swap app"

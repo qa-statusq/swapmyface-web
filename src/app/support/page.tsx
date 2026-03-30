@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/metadata';
+import HreflangTags from '@/components/seo/HreflangTags';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import JsonLd from '@/components/seo/JsonLd';
+import { SITE_URL } from '@/lib/constants';
 
 export const dynamic = 'force-static';
 
@@ -10,9 +14,22 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/support',
 });
 
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Support',
+  description: 'SwapMyFace support page with contact information and common questions.',
+  url: `${SITE_URL}/support`,
+  inLanguage: 'en',
+  isPartOf: { '@type': 'WebSite', url: SITE_URL, name: 'SwapMyFace' },
+};
+
 export default function SupportPage() {
   return (
     <div className="legal-shell">
+      <JsonLd data={webPageSchema} />
+      <HreflangTags path="/support" />
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Support', href: '/support' }]} />
       <div className="legal-meta">
         <span>Support</span>
         <span>Contact: <span className="mono">contact@facefitswap.com</span></span>
