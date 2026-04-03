@@ -15,11 +15,12 @@ function buildLanguages(path: string): Record<string, string> | undefined {
   const locales = localizedPaths[path];
   if (!locales || locales.length <= 1) return undefined;
 
+  const suffix = path === '/' ? '' : path; // avoid trailing slash on homepage
   const languages: Record<string, string> = {};
   for (const loc of locales) {
-    languages[loc] = loc === 'en' ? `${SITE_URL}${path}` : `${SITE_URL}/${loc}${path}`;
+    languages[loc] = loc === 'en' ? `${SITE_URL}${suffix}` : `${SITE_URL}/${loc}${suffix}`;
   }
-  languages['x-default'] = `${SITE_URL}${path}`;
+  languages['x-default'] = `${SITE_URL}${suffix}`;
   return languages;
 }
 

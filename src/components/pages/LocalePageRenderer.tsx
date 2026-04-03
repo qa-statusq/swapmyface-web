@@ -15,8 +15,17 @@ import { FESTIVALS } from '@/data/festivals';
 import { BLOG_POSTS } from '@/data/blog';
 import { HOME_FAQ } from '@/data/faq';
 import { SITE_URL, playStoreLink } from '@/lib/constants';
+import { localizedPaths, type Locale } from '@/lib/i18n';
 import PlayStoreIcon from '@/components/ui/PlayStoreIcon';
 import JsonLd from '@/components/seo/JsonLd';
+
+/** Return locale-prefixed URL only if the festival has a locale page, otherwise English */
+function festivalHref(prefix: string, locale: string, slug: string): string {
+  const path = `/templates/festival/${slug}`;
+  const locales = localizedPaths[path];
+  if (locales?.includes(locale as Locale)) return `${prefix}/templates/festival/${slug}`;
+  return `/templates/festival/${slug}`;
+}
 
 interface LocalePageRendererProps {
   locale: string;
@@ -119,7 +128,7 @@ function TemplatesContent({ t, prefix, locale }: { t: ReturnType<typeof getTrans
           <h2 className="mb-8 text-2xl font-bold">{t.sections.festivals}</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {FESTIVALS.map((festival) => (
-              <Link key={festival.slug} href={`${prefix}/templates/festival/${festival.slug}`} className="group flex items-center gap-3 rounded-xl border border-line bg-surface/50 p-4 transition-all hover:border-accent/30">
+              <Link key={festival.slug} href={festivalHref(prefix, locale, festival.slug)} className="group flex items-center gap-3 rounded-xl border border-line bg-surface/50 p-4 transition-all hover:border-accent/30">
                 <span className="text-2xl">{festival.emoji}</span>
                 <span className="font-medium group-hover:text-accent transition-colors">{festival.name} {t.festivalHighlight.faceSwapSuffix}</span>
               </Link>
@@ -158,7 +167,7 @@ function FestivalTemplatesContent({ t, prefix, locale }: { t: ReturnType<typeof 
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {FESTIVALS.map((festival) => (
-              <Link key={festival.slug} href={`${prefix}/templates/festival/${festival.slug}`} className="group flex items-start gap-4 rounded-2xl border border-line bg-surface/50 p-5 transition-all hover:border-accent/30">
+              <Link key={festival.slug} href={festivalHref(prefix, locale, festival.slug)} className="group flex items-start gap-4 rounded-2xl border border-line bg-surface/50 p-5 transition-all hover:border-accent/30">
                 <span className="mt-0.5 text-3xl">{festival.emoji}</span>
                 <div>
                   <h3 className="font-semibold group-hover:text-accent transition-colors">{festival.name} {t.festivalHighlight.faceSwapSuffix}</h3>

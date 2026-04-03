@@ -15,13 +15,14 @@ const localeOgMap: Record<string, string> = {
 /** Build alternates.languages for a given path, only including locales that have that path */
 export function generateLocaleAlternates(path: string): { canonical: string; languages: Record<string, string> } {
   const locales = localizedPaths[path] || ['en'];
+  const suffix = path === '/' ? '' : path; // avoid trailing slash on homepage
   const languages: Record<string, string> = {};
   for (const loc of locales) {
-    const url = loc === 'en' ? `${SITE_URL}${path}` : `${SITE_URL}/${loc}${path}`;
+    const url = loc === 'en' ? `${SITE_URL}${suffix}` : `${SITE_URL}/${loc}${suffix}`;
     languages[loc] = url;
   }
-  languages['x-default'] = `${SITE_URL}${path}`;
-  return { canonical: languages['en'] || `${SITE_URL}${path}`, languages };
+  languages['x-default'] = `${SITE_URL}${suffix}`;
+  return { canonical: languages['en'] || `${SITE_URL}${suffix}`, languages };
 }
 
 /** Slug-to-path mapping for the catch-all pages */
