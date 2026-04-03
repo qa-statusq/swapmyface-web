@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import LocalePageRenderer from '@/components/pages/LocalePageRenderer';
-import { generateLocalePageMetadata, isRenderableSlug } from '@/lib/localeMetadata';
+import { generateLocalePageMetadata, isRenderableSlug, getFestivalRedirect } from '@/lib/localeMetadata';
 
 const LOCALE = 'hi';
 
@@ -13,6 +13,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function HindiCatchAllPage({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
-  if (!isRenderableSlug(slug)) notFound();
+  if (!isRenderableSlug(slug)) {
+    const redirect = getFestivalRedirect(LOCALE, slug);
+    if (redirect) permanentRedirect(redirect);
+    notFound();
+  }
   return <LocalePageRenderer locale={LOCALE} slug={slug} />;
 }

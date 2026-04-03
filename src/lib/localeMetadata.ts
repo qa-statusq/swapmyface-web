@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { SITE_URL, SITE_NAME } from './constants';
 import { getTranslations } from './getTranslations';
 import { localizedPaths, type Locale } from './i18n';
+import { FESTIVALS } from '@/data/festivals';
 
 const localeOgMap: Record<string, string> = {
   en: 'en_US',
@@ -45,6 +46,23 @@ const RENDERABLE_SLUGS = [
 
 export function isRenderableSlug(slug: string[]): boolean {
   return RENDERABLE_SLUGS.includes(slug.join('/'));
+}
+
+/**
+ * If the slug is a festival page that doesn't have a locale version,
+ * return the English URL to redirect to. Otherwise return null (no redirect needed).
+ */
+export function getFestivalRedirect(locale: string, slug: string[]): string | null {
+  if (slug.length === 3 && slug[0] === 'templates' && slug[1] === 'festival') {
+    const festivalSlug = slug[2];
+    const path = `/templates/festival/${festivalSlug}`;
+    const locales = localizedPaths[path];
+    // If this locale has a dedicated page, no redirect needed
+    if (locales?.includes(locale as Locale)) return null;
+    // If the festival exists in English, redirect there
+    if (FESTIVALS.some((f) => f.slug === festivalSlug)) return path;
+  }
+  return null;
 }
 
 /** Generate full Metadata for a locale catch-all page */
